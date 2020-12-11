@@ -142,7 +142,6 @@ module.exports = HandleMsg = async (aruga, message) => {
 	aruga.sendSeen(chatId)
 	    
 	//lol
-       case 'profile':
        case 'me' :
             if (isBanned) return false
             if (isGroupMsg) {

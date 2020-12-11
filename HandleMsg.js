@@ -123,9 +123,58 @@ module.exports = HandleMsg = async (aruga, message) => {
 
         // [BETA] Avoid Spam Message
         msgFilter.addFilter(from)
+	    
+	    //FITUR ANTI LINK
+        if (isGroupMsg && !isGroupAdmins){
+            if (chats.match(/(https:\/\/chat.whatsapp.com)/gi)) {
+                const check = await aruga.inviteInfo(chats);
+                if (!check) {
+                    return
+                } else {
+                    aruga.reply(from, `*「 GROUP LINK DETECTOR 」*\nKamu mengirimkan link grup chat, maaf kamu di kick dari grup :(`, id).then(() => {
+                        aruga.removeParticipant(groupId, sender.id)
+                    })
+                }
+            }
+        }
 	
 	//[AUTO READ] Auto read message 
 	aruga.sendSeen(chatId)
+	    
+	//lol
+       case 'profile':
+       case 'me' :
+            if (isBanned) return false
+            if (isGroupMsg) {
+                if (!quotedMsg) {
+                var pic = await aruga.getProfilePicFromServer(author)
+                var namae = pushname
+                var sts = await aruga.getStatus(author)
+                var adm = isGroupAdmins
+                const { status } = sts
+                if (pic == undefined) {
+                    var pfp = errorurl 
+                } else {
+                    var pfp = pic
+                } 
+                await aruga.sendFileFromUrl(from, pfp, 'pfp.jpg', `*User Profile* ✨️ \n\n➸ *Username: ${namae}*\n\n➸ *User Info: ${status}*\n\n➸ *Admin Group: ${adm}*\n\n`)
+             } else if (quotedMsg) {
+             var qmid = quotedMsgObj.sender.id
+             var pic = await aruga.getProfilePicFromServer(qmid)
+             var namae = quotedMsgObj.sender.name
+             var sts = await aruga.getStatus(qmid)
+             var adm = isGroupAdmins
+             var donate = isAdmin
+             const { status } = sts
+              if (pic == undefined) {
+              var pfp = errorurl 
+              } else {
+              var pfp = pic
+              } 
+              await aruga.sendFileFromUrl(from, pfp, 'pfp.jpg', `*User Profile* ✨️ \n\n➸ *Username: ${namae}*\n\n➸ *User Info: ${status}*\n\n➸ *Admin Group: ${adm}*\n\n`)
+             }
+            }
+            break
 	    
 	// Filter Banned People
         if (isBanned) {

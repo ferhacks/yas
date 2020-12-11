@@ -141,7 +141,14 @@ module.exports = HandleMsg = async (aruga, message) => {
 	//[AUTO READ] Auto read message 
 	aruga.sendSeen(chatId)
 	    
-	//lol
+	// Filter Banned People
+        if (isBanned) {
+            return console.log(color('[BAN]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname))
+        }
+		
+        switch (command) {
+        // Menu and TnC
+       case 'profile':
        case 'me' :
             if (isBanned) return false
             if (isGroupMsg) {
@@ -174,14 +181,6 @@ module.exports = HandleMsg = async (aruga, message) => {
              }
             }
             break
-	    
-	// Filter Banned People
-        if (isBanned) {
-            return console.log(color('[BAN]', 'red'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname))
-        }
-		
-        switch (command) {
-        // Menu and TnC
         case 'speed':
         case 'ping':
             await aruga.sendText(from, `Pong!!!!\nSpeed: ${processTime(t, moment())} _Second_`)

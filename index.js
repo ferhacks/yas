@@ -1,3 +1,4 @@
+var port = process.env.PORT || 8080;
 const { create, Client } = require('@open-wa/wa-automate')
 const figlet = require('figlet')
 const options = require('./utils/options')

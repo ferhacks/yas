@@ -13,6 +13,8 @@ const db_group = new FileSync(appRoot+'/lib/data/group.json')
 const db = low(db_group)
 db.defaults({ group: []}).write()
 
+const { liriklagu, quotemaker, randomNimek, fb, sleep, jadwalTv, ss } = require('./lib/functions')
+
 const { 
     removeBackgroundFromImageBase64
 } = require('remove.bg')
@@ -22,7 +24,6 @@ const {
 } = require('child_process')
 
 const { 
-    randomNimek
     menuId, 
     cekResi, 
     urlShortener, 

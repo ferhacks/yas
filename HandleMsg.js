@@ -176,26 +176,6 @@ module.exports = HandleMsg = async (aruga, message) => {
                 aruga.reply(from, 'Ada yang Error!', id)
             })
             break
-        case 'randomnsfwneko':
-            if (isGroupMsg) {
-                if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const nsfwneko = await rugaapi.randomNimek('nsfw')
-                if (nsfwneko.endsWith('.png')) {
-                    var ext = '.png'
-                } else {
-                    var ext = '.jpg'
-                }
-                aruga.sendFileFromUrl(from, nsfwneko, `nsfwNeko${ext}`, 'Nsfwneko!', id)
-            } else {
-                const nsfwneko = await rugaapi.randomNimek('nsfw')
-                if (nsfwneko.endsWith('.png')) {
-                    var ext = '.png'
-                } else {
-                    var ext = '.jpg'
-                }
-                aruga.sendFileFromUrl(from, nsfwneko, `nsfwNeko${ext}`, 'Nsfwneko!', id)
-            }
-            break
         case 'loli':
             const loli = await axios.get('https://mhankbarbars.herokuapp.com/api/randomloli').json()
             aruga.sendFileFromUrl(from, loli.result, 'loli.jpeg', 'Lolinya om', id)

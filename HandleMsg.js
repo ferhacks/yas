@@ -1138,6 +1138,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'everyone':
             if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
             if (!isGroupAdmins) return aruga.reply(from, 'Gagal, perintah ini hanya dapat digunakan oleh admin grup!', id)
+           const textInfo = body.slice(8)
             const groupMem = await aruga.getGroupMembers(groupId)
             let hehex = '╔══✪〘 Mention All 〙✪══\n'
             for (let i = 0; i < groupMem.length; i++) {
@@ -1145,7 +1146,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 hehex += ` @${groupMem[i].id.replace(/@c.us/g, '')}\n`
             }
             hehex += '╚═〘 *A R U G A  B O T* 〙'
-            await aruga.sendTextWithMentions(from, hehex)
+            await aruga.sendTextWithMentions(from, `Tag iniciado por: ${pushname}\nRazon:` + textInfo + '\n\n' +hehex)
             break
 		case 'simisimi':
 			if (!isGroupMsg) return aruga.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)

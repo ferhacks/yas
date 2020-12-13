@@ -169,14 +169,13 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomhentai':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-            const nsfq = body.slice(7)
-            const nsfp = await rugaapi.randomNimek(nsfq)
-            await aruga.sendImage(from, `${nsfp}`, '', 'Nih...', id)
+            const nsfp = body.slice(7)
+            const nsfq = await rugaapi.randomNimek(nsfp)
+            await aruga.sendImage(from, `${nsfq}`, '', 'Nih...', id)
             .catch(() => {
                 aruga.reply(from, 'Ada yang Error!', id)
             })
-            break
-		    
+            break	    
        case 'profile':
        case 'me' :
             if (isBanned) return false

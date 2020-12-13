@@ -148,12 +148,12 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'nsfw':
             if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
             if (!isGroupAdmins) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan oleh Admin group!', id)
-            if (args.length === 1) return aruga.reply(from, 'Pilih enable atau disable!', id)
-            if (args[1].toLowerCase() === 'enable') {
+			if (args.length !== 1) return aruga.reply(from, 'Pilih enable atau disable!', id)
+			if (args[0] == 'on') {
                 nsfw_.push(chat.id)
                 fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
                 aruga.reply(from, 'NSWF Command berhasil di aktifkan di group ini! kirim perintah *!nsfwMenu* untuk mengetahui menu', id)
-            } else if (args[1].toLowerCase() === 'disable') {
+			} else if (args[0] == 'off') {
                 nsfw_.splice(chat.id, 1)
                 fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
                 aruga.reply(from, 'NSFW Command berhasil di nonaktifkan di group ini!', id)

@@ -22,7 +22,6 @@ const {
 } = require('child_process')
 
 const { 
-    randomNimek, 
     menuId, 
     cekResi, 
     urlShortener, 

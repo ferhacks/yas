@@ -51,6 +51,7 @@ const simi = JSON.parse(fs.readFileSync('./settings/simi.json'))
 const ngegas = JSON.parse(fs.readFileSync('./settings/ngegas.json'))
 const setting = JSON.parse(fs.readFileSync('./settings/setting.json'))
 const welcome = JSON.parse(fs.readFileSync('./settings/welcome.json'))
+const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
 
 let { 
     ownerNumber, 
@@ -93,7 +94,8 @@ module.exports = HandleMsg = async (aruga, message) => {
 		const chats = (type === 'chat') ? body : (type === 'image' || type === 'video') ? caption : ''
 		const pengirim = sender.id
         const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
-
+        const isNsfw = isGroupMsg ? nsfw_.includes(chat.id) : false
+        
         // Bot Prefix
         body = (type === 'chat' && body.startsWith(prefix)) ? body : ((type === 'image' && caption || type === 'video' && caption) && caption.startsWith(prefix)) ? caption : ''
         const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()

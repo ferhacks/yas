@@ -147,6 +147,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         switch (command) {
         // Menu and TnC
         case 'nsfw':
+            if (isBanned) return false
             if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
             if (!isGroupAdmins) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan oleh Admin group!', id)
 			if (args.length !== 1) return aruga.reply(from, 'Pilih enable atau disable!', id)
@@ -163,10 +164,12 @@ module.exports = HandleMsg = async (aruga, message) => {
             }
             break
         case 'nsfwmenu':
+            if (isBanned) return false
             if (!isNsfw) return
             aruga.reply(from, '1. !randomHentai\n2. !randomNsfwNeko', id)
             break
         case 'randomhentai':
+            if (isBanned) return false
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
             const nsfp = body.slice(7)
@@ -177,7 +180,6 @@ module.exports = HandleMsg = async (aruga, message) => {
             })
             break	    
        case 'profile':
-       case 'me' :
             if (isBanned) return false
             if (isGroupMsg) {
                 if (!quotedMsg) {

@@ -176,10 +176,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 aruga.reply(from, 'Ada yang Error!', id)
             })
             break
-        case 'loli':
-            const loli = await axios.get('https://mhankbarbars.herokuapp.com/api/randomloli').json()
-            aruga.sendFileFromUrl(from, loli.result, 'loli.jpeg', 'Lolinya om', id)
-            break
+		    
        case 'profile':
        case 'me' :
             if (isBanned) return false

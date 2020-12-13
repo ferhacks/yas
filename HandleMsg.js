@@ -22,6 +22,7 @@ const {
 } = require('child_process')
 
 const { 
+    randomNimek
     menuId, 
     cekResi, 
     urlShortener, 
@@ -52,7 +53,6 @@ const ngegas = JSON.parse(fs.readFileSync('./settings/ngegas.json'))
 const setting = JSON.parse(fs.readFileSync('./settings/setting.json'))
 const welcome = JSON.parse(fs.readFileSync('./settings/welcome.json'))
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
-const { liriklagu, quotemaker, randomNimek, fb, sleep, jadwalTv, ss } = require('./lib/functions')
 
 let { 
     ownerNumber, 
@@ -169,7 +169,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomhentai':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const hentai = await randomNimek('hentai')
+                const hentai = await rugaapi.randomNimek('hentai')
                 if (hentai.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -178,7 +178,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 aruga.sendFileFromUrl(from, hentai, `Hentai${ext}`, 'Hentai!', id)
                 break
             } else {
-                const hentai = await randomnimek('hentai')
+                const hentai = await rugaapi.randomNimek('hentai')
                 if (hentai.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -189,7 +189,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomnsfwneko':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const nsfwneko = await randomnimek('nsfw')
+                const nsfwneko = await rugaapi.randomNimek('nsfw')
                 if (nsfwneko.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -197,7 +197,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 }
                 aruga.sendFileFromUrl(from, nsfwneko, `nsfwNeko${ext}`, 'Nsfwneko!', id)
             } else {
-                const nsfwneko = await randomnimek('nsfw')
+                const nsfwneko = await rugaapi.randomNimek('nsfw')
                 if (nsfwneko.endsWith('.png')) {
                     var ext = '.png'
                 } else {

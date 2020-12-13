@@ -284,6 +284,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 let randompiropo = splitpiropo[Math.floor(Math.random() * splitpiropo.length)]
                 aruga.reply(from, randompiropo, id)
             })
+	     break
 	case 'coolteks':
 	case 'cooltext':
             if (args.length == 0) return aruga.reply(from, `Cooltext uso: ${prefix}cooltext texto\n\nEjemplo: ${prefix}cooltext lol`, id)

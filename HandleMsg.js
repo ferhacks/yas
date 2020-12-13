@@ -276,6 +276,14 @@ module.exports = HandleMsg = async (aruga, message) => {
 			
 			
         // Sticker Creator
+	      case 'piropo':
+            fetch('https://raw.githubusercontent.com/ferhacks/yas/master/piropos.txt')
+            .then(res => res.text())
+            .then(body => {
+                let splitpiropo = body.split('\n')
+                let randompiropo = splitpiropo[Math.floor(Math.random() * splitpiropo.length)]
+                aruga.reply(from, randompiropo, id)
+            })
 	case 'coolteks':
 	case 'cooltext':
             if (args.length == 0) return aruga.reply(from, `Cooltext uso: ${prefix}cooltext texto\n\nEjemplo: ${prefix}cooltext lol`, id)

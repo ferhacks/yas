@@ -168,7 +168,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomhentai':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const hentai = await randomNimek('hentai')
+                const hentai = await rugaapi.randomNimek('hentai')
                 if (hentai.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -177,7 +177,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 aruga.sendFileFromUrl(from, hentai, `Hentai${ext}`, 'Hentai!', id)
                 break
             } else {
-                const hentai = await randomNimek('hentai')
+                const hentai = await rugaapi.randomNimek('hentai')
                 if (hentai.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -188,7 +188,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomnsfwneko':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const nsfwneko = await randomNimek('nsfw')
+                const nsfwneko = await rugaapi.randomNimek('nsfw')
                 if (nsfwneko.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -196,7 +196,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 }
                 aruga.sendFileFromUrl(from, nsfwneko, `nsfwNeko${ext}`, 'Nsfwneko!', id)
             } else {
-                const nsfwneko = await randomNimek('nsfw')
+                const nsfwneko = await rugaapi.randomNimek('nsfw')
                 if (nsfwneko.endsWith('.png')) {
                     var ext = '.png'
                 } else {

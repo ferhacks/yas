@@ -663,6 +663,15 @@ module.exports = HandleMsg = async (aruga, message) => {
 			break
 			
 		//Primbon Menu
+        case 'randomhentai':
+            const hentaiq = body.slice(7)
+            const hentaip = await rugaapi.randomNimek(hentaiq)
+            await aruga.sendImage(from, `${hentaip}`, '', 'Nih...', id)
+            .catch(() => {
+                aruga.reply(from, 'Ada yang Error!', id)
+            })
+            break
+			
 		case 'cekzodiak':
             if (args.length !== 4) return aruga.reply(from, `Untuk mengecek zodiak, gunakan ${prefix}cekzodiak nama tanggallahir bulanlahir tahunlahir\nContoh: ${prefix}cekzodiak fikri 13 06 2004`, id)
             const cekzodiak = await rugaapi.cekzodiak(args[0],args[1],args[2])

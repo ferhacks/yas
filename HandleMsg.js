@@ -169,23 +169,13 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomhentai':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const hentai = await rugaapi.randomNimek('hentai')
-                if (hentai.endsWith('.png')) {
-                    var ext = '.png'
-                } else {
-                    var ext = '.jpg'
-                }
-                aruga.sendFileFromUrl(from, hentai, `Hentai${ext}`, 'Hentai!', id)
-                break
-            } else {
-                const hentai = await rugaapi.randomNimek('hentai')
-                if (hentai.endsWith('.png')) {
-                    var ext = '.png'
-                } else {
-                    var ext = '.jpg'
-                }
-                aruga.sendFileFromUrl(from, hentai, `Hentai${ext}`, 'Hentai!', id)
-            }
+            const hentai = body.slice(7)
+            const hentai = await rugaapi.randomNimek(hentai)
+            await aruga.sendImage(from, `${hentai}`, '', 'Nih...', id)
+            .catch(() => {
+                aruga.reply(from, 'Ada yang Error!', id)
+            })
+            break
         case 'randomnsfwneko':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)

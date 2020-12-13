@@ -169,7 +169,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         case 'randomhentai':
             if (isGroupMsg) {
                 if (!isNsfw) return aruga.reply(from, 'Command/Perintah NSFW belum di aktifkan di group ini!', id)
-                const hentai = await randomnimek('hentai')
+                const hentai = await randomNimek('hentai')
                 if (hentai.endsWith('.png')) {
                     var ext = '.png'
                 } else {
@@ -207,7 +207,7 @@ module.exports = HandleMsg = async (aruga, message) => {
             }
             break
         case 'loli':
-            const loli = await get.get('https://mhankbarbars.herokuapp.com/api/randomloli').json()
+            const loli = await axios.get('https://mhankbarbars.herokuapp.com/api/randomloli').json()
             aruga.sendFileFromUrl(from, loli.result, 'loli.jpeg', 'Lolinya om', id)
             break
        case 'profile':

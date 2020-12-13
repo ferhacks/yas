@@ -53,6 +53,7 @@ const ngegas = JSON.parse(fs.readFileSync('./settings/ngegas.json'))
 const setting = JSON.parse(fs.readFileSync('./settings/setting.json'))
 const welcome = JSON.parse(fs.readFileSync('./settings/welcome.json'))
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
+const { liriklagu, quotemaker, randomNimek, fb, sleep, jadwalTv, ss } = require('./lib/functions')
 
 let { 
     ownerNumber, 

@@ -664,7 +664,7 @@ module.exports = HandleMsg = async (aruga, message) => {
             case 'baka':
                 aruga.reply(from, mess.wait, id);
                 axios.get('https://nekos.life/api/v2/img/baka').then(res => {
-                    aruga.sendFileFromUrl(from, res.data.url, 'baka')
+                    aruga.sendFileFromUrl(from, res.data.url, 'B-baka..')
                 })
                 break
                 case 'lolinsfw':

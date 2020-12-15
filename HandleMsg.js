@@ -662,6 +662,77 @@ module.exports = HandleMsg = async (aruga, message) => {
             })
             break
 	//Group All User
+            case 'baka':
+                aruga.reply(from, mess.wait, id);
+                axios.get('https://nekos.life/api/v2/img/baka').then(res => {
+                    aruga.sendFileFromUrl(from, res.data.url, 'baka')
+                })
+                break
+                case 'lolinsfw':
+                    aruga.sendText(from, mess.wait);
+                    axios.get('http://lolis-life-api.herokuapp.com/getNSFWLoli').then(res => {
+                        aruga.sendFileFromUrl(from, res.data.url, 'Pedo ;-;');
+            })
+                break
+                case 'groupinfo' :
+            case 'gcinfo' :
+                    if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', message.id)
+                    var totalMem = chat.groupMetadata.participants.length
+                    var desc = chat.groupMetadata.desc
+                    var groupname = name
+                    var timestp = chat.groupMetadata.creation
+                    var date = moment(timestp * 1000).format('dddd, DD MMMM YYYY')
+                    var time = moment(timestp * 1000).format('HH:mm:ss')
+                    var ownerwoi = chat.groupMetadata.owner
+                    var grouppic = await aruga.getProfilePicFromServer(chat.id)
+                    if (grouppic == undefined) {
+                         var pfp = errorurl
+                    } else {
+                         var pfp = grouppic 
+                    }
+                    await aruga.sendFileFromUrl(from, pfp, 'group.png', `*「 GROUP INFO 」*
+*➸ Name : ${groupname}*
+Group ini didirikan sejak *${date}* Pukul *${time}* oleh @${ownerwoi.replace('@c.us','')}
+*➸ Members : ${totalMem}*
+*➸ Group Description* 
+${desc}
+₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋₋
+_Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada *${moment(chat.groupMetadata.descTime * 1000).format('dddd, DD MMMM YYYY')}* pukul ${moment(chat.groupMetadata.descTime * 1000).format('HH:mm:ss')}_`)
+
+                    break
+            case 'getpic':
+                if (!isGroupMsg) return aruga.reply(from, `Fitur ini hanya bisa di gunakan dalam group`, id)
+                const texnugm = body.slice(8)
+                const getnomber =  await aruga.checkNumberStatus(texnugm)
+                const useriq = getnomber.id.replace('@','') + '@c.us'
+                    try {
+                        var jnck = await aruga.getProfilePicFromServer(useriq)
+                        if (jnck == undefined){
+                             aruga.reply(from, 'Gada Fotonya, Mungkin lagi depresi')
+
+                        aruga.sendFileFromUrl(from, jnck, `awok.jpg` , `nehh ngab`)
+                        }
+                    } catch {
+                        aruga.reply(from, `Tidak Ada Foto Profile!`, id)
+                    }
+                break
+        case 'resend':	        case 'resend':
+                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, Fitur ini hanya bisa digunakan oleh Admin',id)	                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, Fitur ini hanya bisa digunakan oleh Admin',id)
+                if (quotedMsgObj) {	                if (quotedMsgObj) {
+                    let encryptMedia	                    let encryptMedia
+                    let replyOnReply = await aruga.getMessageById(quotedMsgObj.id)	                    let replyOnReply = await aruga.getMessageById(quotedMsgObj.id)
+                    let obj = replyOnReply.quotedMsgObj	                    let obj = replyOnReply.quotedMsgObj
+                    if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {	                    if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
+                        encryptMedia = quotedMsgObj	                        encryptMedia = quotedMsgObj
+                        if (encryptMedia.animated) encryptMedia.mimetype = ''	                        if (encryptMedia.animated) encryptMedia.mimetype = ''
+                    } else if (obj && /ptt|audio|video|image/.test(obj.type)) {	                    } else if (obj && /ptt|audio|video|image/.test(obj.type)) {
+                        encryptMedia = obj	                        encryptMedia = obj
+                    } else return	                    } else return
+                    const _mimetype = encryptMedia.mimetype	                    const _mimetype = encryptMedia.mimetype
+                    const mediaData = await decryptMedia(encryptMedia)	                    const mediaData = await decryptMedia(encryptMedia)
+                    await aruga.sendFile(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, 'file', ':)', encryptMedia.id)	                    await aruga.sendFile(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, 'file', ':)', encryptMedia.id)
+                } else aruga.reply(from, config.msg.noMedia, id)	                } else aruga.reply(from, config.msg.noMedia, id)
+                break	                break
 	case 'grouplink':
             if (!isBotGroupAdmins) return aruga.reply(from, 'Lo siento, no cuento con admin para dar el link del grupo', id)
             if (isGroupMsg) {

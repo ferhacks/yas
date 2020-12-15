@@ -150,25 +150,25 @@ module.exports = HandleMsg = async (aruga, message) => {
         // Menu and TnC
         case 'nsfw':
             if (isBanned) return false
-            if (!isGroupMsg) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
-            if (!isGroupAdmins) return aruga.reply(from, 'Perintah ini hanya bisa di gunakan oleh Admin group!', id)
-			if (args.length !== 1) return aruga.reply(from, 'Pilih enable atau disable!', id)
+            if (!isGroupMsg) return aruga.reply(from, 'Lo siento marrano, esto es solo para grupos!', id)
+            if (!isGroupAdmins) return aruga.reply(from, 'Lo siento marrano, pidele al admin que lo haga por ti!', id)
+			if (args.length !== 1) return aruga.reply(from, 'Habilita: /nsfw on , Deshabilita: /nsfw off!', id)
 			if (args[0] == 'on') {
                 nsfw_.push(chat.id)
                 fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
-                aruga.reply(from, 'NSWF Command berhasil di aktifkan di group ini! kirim perintah *!nsfwMenu* untuk mengetahui menu', id)
+                aruga.reply(from, 'Hola marranos :D Nsfw esta activo, mira los comandos nsfw aqui: */nsfwMenu*', id)
 			} else if (args[0] == 'off') {
                 nsfw_.splice(chat.id, 1)
                 fs.writeFileSync('./lib/NSFW.json', JSON.stringify(nsfw_))
-                aruga.reply(from, 'NSFW Command berhasil di nonaktifkan di group ini!', id)
+                aruga.reply(from, 'Nsfw deshabilitado, ya no eres un marrano!', id)
             } else {
-                aruga.reply(from, 'Pilih enable atau disable udin!', id)
+                aruga.reply(from, 'Habilita: /nsfw on , Deshabilita: /nsfw off', id)
             }
             break
         case 'nsfwmenu':
             if (isBanned) return false
-            if (!isNsfw) return
-            aruga.reply(from, '1. !randomHentai\n2. !randomNsfwNeko', id)
+            if (!isNsfw) return aruga.reply(from, 'Lo siento marrano, pidelea tu admin marrano que habilite el nsfw :)', id)
+            aruga.reply(from, '1. !randomHentai\n2. !lolinsfw', id)
             break	    
        case 'profile':
             if (isBanned) return false
@@ -669,7 +669,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                 })
                 break
                 case 'lolinsfw':
-		if (!isNsfw) return
+		if (!isNsfw) return aruga.reply(from, 'Lo siento marrano, pidelea tu admin marrano que habilite el nsfw :)', id)
                     aruga.sendText(from, mess.wait);
                     axios.get('http://lolis-life-api.herokuapp.com/getNSFWLoli').then(res => {
                         aruga.sendFileFromUrl(from, res.data.url, 'Si viene el fbi no me heches la culpa');
@@ -803,10 +803,10 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
 			
 		//Primbon Menu
         case 'randomhentai':
-	if (!isNsfw) return
+	if (!isNsfw) return aruga.reply(from, 'Lo siento marrano, pidelea tu admin marrano que habilite el nsfw :)', id)
                     aruga.sendText(from, mess.wait);
                     axios.get('https://nekos.life/api/v2/img/hentai').then(res => {
-                        aruga.sendFileFromUrl(from, res.data.url, 'Pedo ;-;');
+                        aruga.sendFileFromUrl(from, res.data.url, '7w7');
             })
                 break
 			

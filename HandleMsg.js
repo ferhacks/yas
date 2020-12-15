@@ -53,8 +53,8 @@ const ngegas = JSON.parse(fs.readFileSync('./settings/ngegas.json'))
 const setting = JSON.parse(fs.readFileSync('./settings/setting.json'))
 const welcome = JSON.parse(fs.readFileSync('./settings/welcome.json'))
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
-let dbcot = JSON.parse(fs.readFileSync('./lib/database/bacot.json'))
-let dsay = JSON.parse(fs.readFileSync('./lib/database/say.json'))
+const dbcot = JSON.parse(fs.readFileSync('./lib/database/bacot.json'))
+const dsay = JSON.parse(fs.readFileSync('./lib/database/say.json'))
 
 let { 
     ownerNumber, 

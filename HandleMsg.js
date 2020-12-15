@@ -669,9 +669,10 @@ module.exports = HandleMsg = async (aruga, message) => {
                 })
                 break
                 case 'lolinsfw':
+		if (!isNsfw) return
                     aruga.sendText(from, mess.wait);
                     axios.get('http://lolis-life-api.herokuapp.com/getNSFWLoli').then(res => {
-                        aruga.sendFileFromUrl(from, res.data.url, 'Pedo ;-;');
+                        aruga.sendFileFromUrl(from, res.data.url, 'Si viene el fbi no me heches la culpa');
             })
                 break
                 case 'groupinfo' :

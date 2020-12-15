@@ -717,23 +717,23 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
                         aruga.reply(from, `Tidak Ada Foto Profile!`, id)
                     }
                 break
-        case 'resend':	        case 'resend':
-                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, Fitur ini hanya bisa digunakan oleh Admin',id)	                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, Fitur ini hanya bisa digunakan oleh Admin',id)
-                if (quotedMsgObj) {	                if (quotedMsgObj) {
-                    let encryptMedia	                    let encryptMedia
-                    let replyOnReply = await aruga.getMessageById(quotedMsgObj.id)	                    let replyOnReply = await aruga.getMessageById(quotedMsgObj.id)
-                    let obj = replyOnReply.quotedMsgObj	                    let obj = replyOnReply.quotedMsgObj
-                    if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {	                    if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
-                        encryptMedia = quotedMsgObj	                        encryptMedia = quotedMsgObj
-                        if (encryptMedia.animated) encryptMedia.mimetype = ''	                        if (encryptMedia.animated) encryptMedia.mimetype = ''
-                    } else if (obj && /ptt|audio|video|image/.test(obj.type)) {	                    } else if (obj && /ptt|audio|video|image/.test(obj.type)) {
-                        encryptMedia = obj	                        encryptMedia = obj
-                    } else return	                    } else return
-                    const _mimetype = encryptMedia.mimetype	                    const _mimetype = encryptMedia.mimetype
-                    const mediaData = await decryptMedia(encryptMedia)	                    const mediaData = await decryptMedia(encryptMedia)
-                    await aruga.sendFile(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, 'file', ':)', encryptMedia.id)	                    await aruga.sendFile(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, 'file', ':)', encryptMedia.id)
-                } else aruga.reply(from, config.msg.noMedia, id)	                } else aruga.reply(from, config.msg.noMedia, id)
-                break	                break
+        case 'resend':
+                if (!isGroupAdmins) return aruga.reply(from, 'Gagal, Fitur ini hanya bisa digunakan oleh Admin',id)
+                if (quotedMsgObj) {
+                    let encryptMedia
+                    let replyOnReply = await aruga.getMessageById(quotedMsgObj.id)
+                    let obj = replyOnReply.quotedMsgObj
+                    if (/ptt|audio|video|image|document|sticker/.test(quotedMsgObj.type)) {
+                        encryptMedia = quotedMsgObj
+                        if (encryptMedia.animated) encryptMedia.mimetype = ''
+                    } else if (obj && /ptt|audio|video|image/.test(obj.type)) {
+                        encryptMedia = obj
+                    } else return
+                    const _mimetype = encryptMedia.mimetype
+                    const mediaData = await decryptMedia(encryptMedia)
+                    await aruga.sendFile(from, `data:${_mimetype};base64,${mediaData.toString('base64')}`, 'file', ':)', encryptMedia.id)
+                } else aruga.reply(from, config.msg.noMedia, id)
+                break
 	case 'grouplink':
             if (!isBotGroupAdmins) return aruga.reply(from, 'Lo siento, no cuento con admin para dar el link del grupo', id)
             if (isGroupMsg) {

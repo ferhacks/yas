@@ -802,13 +802,12 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us','')} pada
 			
 		//Primbon Menu
         case 'randomhentai':
-            const hentaiq = body.slice(7)
-            const hentaip = await rugaapi.randomNimek(hentaiq)
-            await aruga.sendImage(from, `${hentaip}`, '', 'Nih...', id)
-            .catch(() => {
-                aruga.reply(from, 'Ada yang Error!', id)
+	if (!isNsfw) return
+                    aruga.sendText(from, mess.wait);
+                    axios.get('https://nekos.life/api/v2/img/hentai').then(res => {
+                        aruga.sendFileFromUrl(from, res.data.url, 'Pedo ;-;');
             })
-            break
+                break
 			
 		case 'cekzodiak':
             if (args.length !== 4) return aruga.reply(from, `Untuk mengecek zodiak, gunakan ${prefix}cekzodiak nama tanggallahir bulanlahir tahunlahir\nContoh: ${prefix}cekzodiak fikri 13 06 2004`, id)

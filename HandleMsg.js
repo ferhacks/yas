@@ -167,12 +167,9 @@ module.exports = HandleMsg = async (aruga, message) => {
         // Menu and TnC
         case 'kill':
         if (!isBotGroupAdmins) return aruga.reply(from, 'ups.. no puedo matar si no soy admin', id)
-        aruga.reply(from, 'Esto le va a doler mas a ti que a mi... ( ⇀‸↼‶ )', id).then(() => {
+        aruga.reply(from, `Esto le va a doler mas a ti que a mi... ( ⇀‸↼‶ )`, id).then(() => {
                        aruga.removeParticipant(groupId, sender.id)
                     })
-                }
-            }
-        }
         break
         
         case 'nsfw':

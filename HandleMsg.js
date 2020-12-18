@@ -219,7 +219,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         }
 
 
-        if (isGroupMsg && AntiStickerSpam && !isGroupAdmins && !isOwner){
+        if (isGroupMsg && AntiStickerSpam && !isGroupAdmins){
             if(stickermsg === true){
                 if(isStickerMsg(serial)) return
                 addStickerCount(serial)

@@ -205,7 +205,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         }
 
         //fitur anti link
-        if (isGroupMsg && GroupLinkDetector && !isGroupAdmins && !isOwner){
+        if (isGroupMsg && GroupLinkDetector && !isGroupAdmins && !isOwnerBot){
             if (chats.match(/(https:\/\/chat.whatsapp.com)/gi)) {
                 const check = await aruga.inviteInfo(chats);
                 if (!check) {

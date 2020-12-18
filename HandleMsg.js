@@ -150,7 +150,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         if (isCmd && isGroupMsg) { console.log(color('[EXEC]'), color(moment(t * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${command} [${args.length}]`), 'from', color(pushname), 'in', color(name || formattedTitle)) }
 	    
         function isStickerMsg(id){
-            if (isOwner) {return false;}
+            if (isOwnerBot) {return false;}
             let found = false;
             for (let i of stickerspam){
                 if(i.id === id){
@@ -191,7 +191,7 @@ module.exports = HandleMsg = async (aruga, message) => {
             }  
         }
         function addStickerCount(id){
-            if (isOwner) {return;}
+            if (isOwnerBot) {return;}
             var found = false
             Object.keys(stickerspam).forEach((i) => {
                 if(stickerspam[i].id == id){
@@ -219,7 +219,7 @@ module.exports = HandleMsg = async (aruga, message) => {
         }
 
 
-        if (isGroupMsg && AntiStickerSpam && !isGroupAdmins){
+        if (isGroupMsg && AntiStickerSpam && !isGroupAdmins && !isOwnerBot){
             if(stickermsg === true){
                 if(isStickerMsg(serial)) return
                 addStickerCount(serial)

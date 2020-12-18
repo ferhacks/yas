@@ -170,7 +170,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                                 stickerspam[found].msg = 1;
                                 const result = '✅ DB Sticker Spam has been reset'
                                 console.log(stickerspam[found])
-                                fs.writeFileSync('./lib/helper/stickerspam.json',JSON.stringify(stickerspam));
+                                fs.writeFileSync('./lib/database/stickerspam.json',JSON.stringify(stickerspam));
                                 aruga.sendText(from, result)
                             } else {
                                     aruga.reply(from, `${monospace(`Di database ngga ada nomer itu ngab`)}`, id)
@@ -186,7 +186,7 @@ module.exports = HandleMsg = async (aruga, message) => {
             if (found === false){
                 let obj = {id: `${id}`, msg:1};
                 stickerspam.push(obj);
-                fs.writeFileSync('./lib/helper/stickerspam.json',JSON.stringify(stickerspam));
+                fs.writeFileSync('./lib/database/stickerspam.json',JSON.stringify(stickerspam));
                 return false;
             }  
         }
@@ -200,7 +200,7 @@ module.exports = HandleMsg = async (aruga, message) => {
             })
             if (found !== false) {
                 stickerspam[found].msg += 1;
-                fs.writeFileSync('./lib/helper/stickerspam.json',JSON.stringify(stickerspam));
+                fs.writeFileSync('./lib/database/stickerspam.json',JSON.stringify(stickerspam));
             }
         }
 
@@ -254,7 +254,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                             return aruga.reply(from, '*Anti Spam Sticker Detector* sudah aktif di grup ini', id) //if number already exists on database
                         } else {
                             antisticker.push(chatId)
-                            fs.writeFileSync('./lib/helper/antisticker.json', JSON.stringify(antisticker))
+                            fs.writeFileSync('./lib/database/antisticker.json', JSON.stringify(antisticker))
                             aruga.reply(from, '*[Anti Sticker SPAM]* telah di aktifkan\nSetiap member grup yang spam sticker lebih dari 7 akan di kick oleh bot!', id)
                         }
                     } else if (args[0] == 'off') {
@@ -264,7 +264,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                         } else {
                             let nixx = antisticker.indexOf(chatId)
                             antisticker.splice(nixx, 1)
-                            fs.writeFileSync('./lib/helper/antisticker.json', JSON.stringify(antisticker))
+                            fs.writeFileSync('./lib/database/antisticker.json', JSON.stringify(antisticker))
                             aruga.reply(from, '*[Anti Sticker SPAM]* telah di nonaktifkan\n', id)
                         }
                     } else {
@@ -281,7 +281,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                             return aruga.reply(from, '*Anti Group Link Detector* sudah aktif di grup ini', id) //if number already exists on database
                         } else {
                             antilink.push(chatId)
-                            fs.writeFileSync('./lib/helper/antilink.json', JSON.stringify(antilink))
+                            fs.writeFileSync('./lib/database/antilink.json', JSON.stringify(antilink))
                             aruga.reply(from, '*[Anti Group Link]* telah di aktifkan\nSetiap member grup yang mengirim pesan mengandung link grup akan di kick oleh bot!', id)
                         }
                     } else if (args[0] == 'off') {
@@ -291,7 +291,7 @@ module.exports = HandleMsg = async (aruga, message) => {
                         } else {
                             let nixx = antilink.indexOf(chatId)
                             antilink.splice(nixx, 1)
-                            fs.writeFileSync('./lib/helper/antilink.json', JSON.stringify(antilink))
+                            fs.writeFileSync('./lib/database/antilink.json', JSON.stringify(antilink))
                             aruga.reply(from, '*[Anti Group Link]* telah di nonaktifkan\n', id)
                         }
                     } else {

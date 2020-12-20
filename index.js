@@ -70,6 +70,16 @@ const start = (aruga = new Client()) => {
         })
     })
 
+//test
+aruga.onAddedToGroup(((chat) => {
+            let totalMem = chat.groupMetadata.participants.length
+            if (totalMem < 30) { 
+            	aruga.sendText(chat.id, `Cih member nya cuma ${totalMem}, Kalo mau invite bot, minimal jumlah mem ada 30`).then(() => aruga.leaveGroup(chat.id)).then(() => aruga.deleteChat(chat.id))
+            } else {
+                client.sendText(chat.groupMetadata.id, `Halo warga grup *${chat.contact.name}* terimakasih sudah menginvite bot ini, untuk melihat menu silahkan kirim */help*`)
+            }
+        })) 
+
     // ketika seseorang mengirim pesan
     aruga.onMessage(async (message) => {
         aruga.getAmountOfLoadedMessages() // menghapus pesan cache jika sudah 3000 pesan.
